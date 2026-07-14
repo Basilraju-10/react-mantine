@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import "./ProductCard.css";
+
 import {
   Card,
   Image,
@@ -11,6 +12,7 @@ import {
   Stack,
   Divider,
 } from "@mantine/core";
+
 import {
   IconMapPin,
   IconEye,
@@ -23,15 +25,10 @@ export default function ProductCard({ product }) {
       radius="md"
       withBorder
       p="lg"
+      h="100%"
       style={{
-        transition: "0.25s",
         cursor: "pointer",
-        width: 280
-      }}
-      styles={{
-        root: {
-          height: "100%",
-        },
+        transition: "all .2s ease",
       }}
     >
       <Stack justify="space-between" h="100%">
@@ -40,11 +37,9 @@ export default function ProductCard({ product }) {
         <div>
 
           <Group justify="space-between">
-
             <Badge
               color="green"
               variant="light"
-              radius="sm"
             >
               In Stock
             </Badge>
@@ -55,7 +50,6 @@ export default function ProductCard({ product }) {
             >
               AR
             </Badge>
-
           </Group>
 
           <Image
@@ -76,7 +70,7 @@ export default function ProductCard({ product }) {
 
           <Title
             order={5}
-            mt={5}
+            mt={6}
             lineClamp={2}
           >
             {product.title}
@@ -86,14 +80,12 @@ export default function ProductCard({ product }) {
             size="sm"
             c="dimmed"
             mt={6}
+            lineClamp={1}
           >
             {product.category}
           </Text>
 
-          <Group
-            gap={5}
-            mt="sm"
-          >
+          <Group gap={5} mt="sm">
             <IconMapPin size={15} />
 
             <Text
@@ -107,11 +99,12 @@ export default function ProductCard({ product }) {
         </div>
 
         {/* Bottom */}
+
         <div>
 
           <Divider my="md" />
 
-          <Group justify="space-between">
+          <Group justify="space-between" align="flex-end">
 
             <div>
 

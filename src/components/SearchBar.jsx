@@ -7,6 +7,7 @@ import {
   Button,
   Text,
 } from "@mantine/core";
+
 import {
   IconSearch,
   IconLayoutGrid,
@@ -23,20 +24,22 @@ export default function SearchBar({ totalProducts }) {
       p="md"
       mb="lg"
     >
-      <Group justify="space-between">
-
-        {/* Left Section */}
-        <Group>
-
+      <Group
+        justify="space-between"
+        align="center"
+        wrap="wrap"
+      >
+        {/* Left */}
+        <Group wrap="wrap">
           <TextInput
             placeholder="Search catalog..."
             leftSection={<IconSearch size={18} />}
-            w={250}
             radius="md"
+            flex={1}
+            miw={220}
           />
 
           <Group gap={6}>
-
             <ActionIcon
               variant="filled"
               color="green"
@@ -54,14 +57,11 @@ export default function SearchBar({ totalProducts }) {
             >
               <IconList size={18} />
             </ActionIcon>
-
           </Group>
-
         </Group>
 
-        {/* Right Section */}
-        <Group>
-
+        {/* Right */}
+        <Group wrap="wrap" justify="flex-end">
           <Text fw={500}>
             Showing {totalProducts} results
           </Text>
@@ -71,7 +71,7 @@ export default function SearchBar({ totalProducts }) {
             variant="light"
             color="gray"
             radius="md"
-            size='sm'
+            size="sm"
           >
             Raise Bulk RFQ
           </Button>
@@ -81,13 +81,11 @@ export default function SearchBar({ totalProducts }) {
             to="/add"
             color="green"
             radius="md"
-            size='sm'
+            size="sm"
           >
             Add Product
           </Button>
-
         </Group>
-
       </Group>
     </Paper>
   );

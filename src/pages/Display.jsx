@@ -5,11 +5,13 @@ import {
   Anchor,
   Title,
   Text,
-  SimpleGrid,
+  Grid,
   Stack,
+  Box,
 } from "@mantine/core";
 
 import Layout from "../components/Layout";
+import Sidebar from "../components/Sidebar";
 import SearchBar from "../components/SearchBar";
 import ProductCard from "../components/ProductCard";
 import { getProducts } from "../api/product";
@@ -47,55 +49,62 @@ export default function Display() {
 
   return (
     <Layout>
-      <Container
-  size="xl"
-  py="lg"
-  pl="xl"
->
-        {/* Breadcrumb */}
+      <Container size="xl" py="lg">
+
         <Breadcrumbs mb="sm">
           {items}
         </Breadcrumbs>
 
-        {/* Heading */}
         <Stack gap={3} mb="xl">
-          <Title
-            order={1}
-            fw={700}
-            size="42px"
-          >
+          <Title order={1} size="42px">
             Parts Catalog
           </Title>
 
-          <Text
-            size="md"
-            c="dimmed"
-          >
+          <Text c="dimmed">
             Search thousands of available aircraft parts from our inventory.
           </Text>
         </Stack>
 
-        {/* Search */}
-        <SearchBar totalProducts={products.length} />
+        <Grid gutter="xl">
 
-        {/* Products */}
-        <SimpleGrid
-          cols={{
-            base: 1,
-            sm: 2,
-            lg: 3,
-            xl: 4,
-          }}
-          spacing="xl"
-          verticalSpacing="xl"
-        >
-          {products.map((product) => (
-            <ProductCard
-              key={product.id}
-              product={product}
-            />
-          ))}
-        </SimpleGrid>
+          {/* Sidebar */}
+          <Grid.Col
+            span={{ base: 12, md: 3 }}
+          >
+            <Box
+              pos="sticky"
+              top={90}
+            >
+              <Sidebar />
+            </Box>
+          </Grid.Col>
+
+          {/* Content */}
+          <Grid.Col
+            span={{ base: 12, md: 9 }}
+          >
+            <SearchBar totalProducts={products.length} />
+
+            <Grid mt="xl">
+
+              {products.map((product) => (
+                <Grid.Col
+                  key={product.id}
+                  span={{
+                    base: 12,
+                    sm: 4,
+                    xl: 4,
+                  }}
+                >
+                  <ProductCard product={product} />
+                </Grid.Col>
+              ))}
+
+            </Grid>
+          </Grid.Col>
+
+        </Grid>
+
       </Container>
     </Layout>
   );
