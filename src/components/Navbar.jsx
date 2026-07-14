@@ -1,126 +1,138 @@
 import {
+  AppShell,
   Group,
-  Button,
-  Menu,
-  Text,
   Image,
+  Text,
+  Menu,
   ActionIcon,
+  Container,
 } from "@mantine/core";
 import {
   IconChevronDown,
+  IconPlus,
+  IconBrandLinkedin,
   IconPhone,
   IconShoppingCart,
-  IconBrandLinkedin,
+  IconDownload,
 } from "@tabler/icons-react";
 
 export default function Navbar() {
   return (
-    <Group
-      justify="space-between"
-      h="100%"
-      px="xl"
-      wrap="nowrap"
+    <AppShell.Header
+      h={80}
+      style={{
+        background: "#ffffff",
+        borderBottom: "1px solid #e9ecef",
+      }}
     >
-      {/* Logo */}
-      <Group gap="xs">
-        {/* Replace with your own logo */}
-        <Image
-          src="https://placehold.co/45x45"
-          w={45}
-          h={45}
-          radius="md"
-        />
-
-        <Text
-          fw={700}
-          size="xl"
-          c="green"
+      <Container
+        size="xl"
+        h="100%"
+      >
+        <Group
+          h="100%"
+          justify="space-between"
         >
-          GFA
-        </Text>
-      </Group>
+          {/* Left */}
+          <Group gap={45}>
 
-      {/* Navigation */}
-      <Group gap={30}>
+            <Image
+  src="/logo.png"
+  w={110}
+/>
 
-        <Text
-          component="a"
-          href="#"
-          fw={500}
-        >
-          Who We Are
-        </Text>
+            <Group gap={35}>
 
-        <Menu shadow="md" width={220}>
-          <Menu.Target>
-            <Button
-              variant="subtle"
-              rightSection={<IconChevronDown size={16} />}
+              <Text fw={500}>Who We Are</Text>
+
+              <Menu shadow="md">
+                <Menu.Target>
+
+                  <Group gap={4} style={{ cursor: "pointer" }}>
+                    <Text fw={500}>Services</Text>
+                    <IconChevronDown size={16} />
+                  </Group>
+
+                </Menu.Target>
+
+                <Menu.Dropdown>
+
+                  <Menu.Item>Repair</Menu.Item>
+
+                  <Menu.Item>Maintenance</Menu.Item>
+
+                  <Menu.Item>Support</Menu.Item>
+
+                </Menu.Dropdown>
+
+              </Menu>
+
+              <Text fw={500}>Quality</Text>
+
+              <Text fw={500}>Events</Text>
+
+              <Group gap={4}>
+                <IconPlus
+                  size={16}
+                  color="#0b7d3b"
+                />
+                <Text fw={500}>More</Text>
+              </Group>
+
+            </Group>
+
+          </Group>
+
+          {/* Right */}
+          <Group gap="lg">
+
+            <ActionIcon
+              variant="filled"
+              color="green"
+              radius="xl"
             >
-              Services
-            </Button>
-          </Menu.Target>
+              <IconBrandLinkedin size={18} />
+            </ActionIcon>
 
-          <Menu.Dropdown>
-            <Menu.Item>Aircraft Parts</Menu.Item>
-            <Menu.Item>Repair</Menu.Item>
-            <Menu.Item>Maintenance</Menu.Item>
-            <Menu.Item>Technical Support</Menu.Item>
-          </Menu.Dropdown>
-        </Menu>
+            <ActionIcon
+              variant="filled"
+              color="green"
+              radius="xl"
+            >
+              <IconPhone size={18} />
+            </ActionIcon>
 
-        <Text component="a" href="#" fw={500}>
-          Quality
-        </Text>
+            <Text fw={500}>
+              AOG Desk
+            </Text>
 
-        <Text component="a" href="#" fw={500}>
-          Events
-        </Text>
+            <ActionIcon
+              variant="subtle"
+              color="gray"
+            >
+              <IconShoppingCart size={22} />
+            </ActionIcon>
 
-        <Text component="a" href="#" fw={500}>
-          More
-        </Text>
+            <Group gap={6}>
 
-      </Group>
+              <ActionIcon
+                variant="filled"
+                color="green"
+                radius="xl"
+              >
+                <IconDownload size={16} />
+              </ActionIcon>
 
-      {/* Right Section */}
-      <Group gap="sm">
+              <Text fw={600}>
+                GFA Login
+              </Text>
 
-        <ActionIcon
-          variant="light"
-          color="green"
-          radius="xl"
-          size="lg"
-        >
-          <IconBrandLinkedin size={18} />
-        </ActionIcon>
+            </Group>
 
-        <ActionIcon
-          variant="light"
-          color="green"
-          radius="xl"
-          size="lg"
-        >
-          <IconPhone size={18} />
-        </ActionIcon>
+          </Group>
 
-        <ActionIcon
-          variant="light"
-          color="green"
-          radius="xl"
-          size="lg"
-        >
-          <IconShoppingCart size={18} />
-        </ActionIcon>
-
-        <Button
-          variant="outline"
-          color="green"
-        >
-          Login
-        </Button>
-
-      </Group>
-    </Group>
+        </Group>
+      </Container>
+    </AppShell.Header>
   );
 }

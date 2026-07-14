@@ -1,19 +1,18 @@
 import { useEffect, useState } from "react";
 import {
   Container,
+  Breadcrumbs,
+  Anchor,
   Title,
   Text,
   SimpleGrid,
-  Breadcrumbs,
-  Anchor,
   Stack,
 } from "@mantine/core";
-
-import { getProducts } from "../api/product";
 
 import Layout from "../components/Layout";
 import SearchBar from "../components/SearchBar";
 import ProductCard from "../components/ProductCard";
+import { getProducts } from "../api/product";
 
 export default function Display() {
   const [products, setProducts] = useState([]);
@@ -33,13 +32,14 @@ export default function Display() {
 
   const items = [
     { title: "Home", href: "#" },
-    { title: "Products", href: "#" },
+    { title: "Catalog", href: "#" },
   ].map((item, index) => (
     <Anchor
-      href={item.href}
       key={index}
-      c={index === 1 ? "green" : "dimmed"}
+      href={item.href}
       underline="never"
+      c={index === 1 ? "green" : "dimmed"}
+      fw={500}
     >
       {item.title}
     </Anchor>
@@ -47,24 +47,32 @@ export default function Display() {
 
   return (
     <Layout>
-      <Container fluid>
-
+      <Container
+  size="xl"
+  py="lg"
+  pl="xl"
+>
         {/* Breadcrumb */}
-        <Breadcrumbs mb="md">
+        <Breadcrumbs mb="sm">
           {items}
         </Breadcrumbs>
 
         {/* Heading */}
-        <Stack gap={4} mb="xl">
-
-          <Title order={2}>
-            Fake Store Products
+        <Stack gap={3} mb="xl">
+          <Title
+            order={1}
+            fw={700}
+            size="42px"
+          >
+            Parts Catalog
           </Title>
 
-          <Text c="dimmed">
-            Browse our collection of high-quality products.
+          <Text
+            size="md"
+            c="dimmed"
+          >
+            Search thousands of available aircraft parts from our inventory.
           </Text>
-
         </Stack>
 
         {/* Search */}
@@ -72,9 +80,14 @@ export default function Display() {
 
         {/* Products */}
         <SimpleGrid
-          cols={{ base: 1, sm: 2, lg: 3, xl: 4 }}
-          spacing="lg"
-          verticalSpacing="lg"
+          cols={{
+            base: 1,
+            sm: 2,
+            lg: 3,
+            xl: 4,
+          }}
+          spacing="xl"
+          verticalSpacing="xl"
         >
           {products.map((product) => (
             <ProductCard
@@ -83,7 +96,6 @@ export default function Display() {
             />
           ))}
         </SimpleGrid>
-
       </Container>
     </Layout>
   );

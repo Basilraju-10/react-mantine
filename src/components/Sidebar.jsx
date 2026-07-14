@@ -2,96 +2,106 @@ import {
   Paper,
   Stack,
   Title,
-  Divider,
+  Text,
   TextInput,
   Select,
-  RangeSlider,
-  Text,
+  Slider,
   Button,
-  Checkbox,
-  Group,
+  Divider,
 } from "@mantine/core";
-import { IconSearch } from "@tabler/icons-react";
+import { IconFilter, IconSearch } from "@tabler/icons-react";
 
 export default function Sidebar() {
   return (
     <Paper
-      p="lg"
-      radius="lg"
       shadow="xs"
+      radius="lg"
       withBorder
+      p="lg"
+      style={{
+        width: 260,
+        position: "sticky",
+        top: 90,
+      }}
     >
       <Stack gap="lg">
 
-        <Title order={4}>
+        {/* Filter Heading */}
+        <Title
+          order={3}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: 8,
+          }}
+        >
+          <IconFilter size={20} />
           Filters
         </Title>
 
         <Divider />
 
-        {/* Product Search */}
-        <TextInput
-          label="Search"
-          placeholder="Search products..."
-          leftSection={<IconSearch size={16} />}
-        />
-
-        {/* Category */}
-        <Select
-          label="Category"
-          placeholder="Select category"
-          data={[
-            "Electronics",
-            "Jewelery",
-            "Men's Clothing",
-            "Women's Clothing",
-          ]}
-          clearable
-        />
-
-        {/* Availability */}
+        {/* Product Number */}
         <div>
-          <Text fw={500} mb="xs">
-            Availability
+          <Text fw={600} mb={8}>
+            Product Number
           </Text>
 
-          <Stack gap={6}>
-            <Checkbox
-              label="In Stock"
-              defaultChecked
-            />
+          <TextInput
+            placeholder="Search part number..."
+            leftSection={<IconSearch size={16} />}
+            radius="md"
+          />
+        </div>
 
-            <Checkbox
-              label="Out of Stock"
-            />
-          </Stack>
+        {/* Condition */}
+        <div>
+          <Text fw={600} mb={8}>
+            Condition
+          </Text>
+
+          <Select
+            radius="md"
+            data={[
+              "All",
+              "New",
+              "Used",
+              "Refurbished",
+            ]}
+            defaultValue="All"
+          />
         </div>
 
         {/* Price */}
         <div>
-          <Text fw={500} mb="xs">
+          <Text fw={600} mb={15}>
             Price Range
           </Text>
 
-          <RangeSlider
+          <Slider
             color="green"
-            min={0}
-            max={1000}
-            defaultValue={[100, 800]}
+            defaultValue={70}
           />
 
-          <Group justify="space-between" mt="xs">
-            <Text size="sm">$100</Text>
-            <Text size="sm">$800</Text>
-          </Group>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              marginTop: 10,
+              color: "#868E96",
+              fontSize: 14,
+            }}
+          >
+            <span>$0</span>
+            <span>$10,000+</span>
+          </div>
         </div>
 
-        <Divider />
-
         <Button
-          variant="outline"
+          variant="light"
           color="gray"
           fullWidth
+          radius="md"
         >
           Reset Filters
         </Button>

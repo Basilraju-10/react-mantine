@@ -3,14 +3,15 @@ import { useParams, Link } from "react-router-dom";
 import {
   Container,
   Grid,
-  Image,
   Paper,
+  Image,
   Badge,
   Title,
   Text,
   Button,
   Stack,
   Group,
+  Divider,
   Loader,
   Center,
   Breadcrumbs,
@@ -50,8 +51,8 @@ export default function ProductDetails() {
 
   const items = [
     { title: "Home", href: "/" },
-    { title: "Products", href: "/" },
-    { title: product.title, href: "#" },
+    { title: "Catalog", href: "/" },
+    { title: "Product", href: "#" },
   ].map((item, index) => (
     <Anchor
       key={index}
@@ -66,76 +67,91 @@ export default function ProductDetails() {
 
   return (
     <Layout>
-      <Container size="lg">
+      <Container fluid px="xl">
 
         <Breadcrumbs mb="lg">
           {items}
         </Breadcrumbs>
 
         <Paper
-          p="xl"
           radius="lg"
           shadow="xs"
           withBorder
+          p="xl"
         >
           <Grid>
 
+            {/* Left Side */}
             <Grid.Col span={{ base: 12, md: 5 }}>
+
               <Image
                 src={product.image}
-                alt={product.title}
+                h={400}
                 fit="contain"
-                h={350}
               />
+
             </Grid.Col>
 
+            {/* Right Side */}
             <Grid.Col span={{ base: 12, md: 7 }}>
 
               <Stack>
 
-                <Badge
-                  color="green"
-                  variant="light"
-                  w="fit-content"
-                >
-                  In Stock
-                </Badge>
+                <Group>
+
+                  <Badge color="green">
+                    In Stock
+                  </Badge>
+
+                  <Badge
+                    variant="outline"
+                    color="blue"
+                  >
+                    AR
+                  </Badge>
+
+                </Group>
 
                 <Title order={2}>
                   {product.title}
                 </Title>
 
                 <Text c="dimmed">
-                  Category: {product.category}
+                  Category : {product.category}
                 </Text>
 
-                <Group>
-                  <Text
-                    size="xl"
-                    fw={700}
-                    c="green"
-                  >
-                    ₹ {product.price}
-                  </Text>
-                </Group>
+                <Divider />
+
+                <Text
+                  size="32px"
+                  fw={700}
+                  c="green"
+                >
+                  ${product.price}
+                </Text>
 
                 <Text>
                   {product.description}
                 </Text>
 
-                <Group mt="md">
+                <Divider />
 
-                  <Button color="green">
-                    Add to Cart
+                <Group>
+
+                  <Button
+                    color="green"
+                    size="md"
+                  >
+                    Add To Cart
                   </Button>
 
                   <Button
-                    variant="outline"
-                    color="green"
                     component={Link}
                     to="/"
+                    variant="outline"
+                    color="green"
                   >
-                    Back to Products
+                    Back
                   </Button>
 
                 </Group>

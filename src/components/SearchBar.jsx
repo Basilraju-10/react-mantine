@@ -1,81 +1,90 @@
 import { Link } from "react-router-dom";
 import {
+  Paper,
   Group,
   TextInput,
+  ActionIcon,
   Button,
   Text,
-  ActionIcon,
-  Paper,
 } from "@mantine/core";
 import {
   IconSearch,
   IconLayoutGrid,
   IconList,
-  IconPlus,
+  IconFileText,
 } from "@tabler/icons-react";
 
 export default function SearchBar({ totalProducts }) {
   return (
     <Paper
-      p="md"
-      radius="lg"
       shadow="xs"
+      radius="lg"
       withBorder
+      p="md"
       mb="lg"
     >
-      <Group justify="space-between" align="center">
+      <Group justify="space-between">
 
-        {/* Left Side */}
+        {/* Left Section */}
         <Group>
 
           <TextInput
             placeholder="Search catalog..."
             leftSection={<IconSearch size={18} />}
-            w={350}
+            w={250}
+            radius="md"
           />
 
-          <ActionIcon
-            variant="light"
-            color="green"
-            size="lg"
-            radius="md"
-          >
-            <IconLayoutGrid size={18} />
-          </ActionIcon>
+          <Group gap={6}>
 
-          <ActionIcon
-            variant="light"
-            color="gray"
-            size="lg"
-            radius="md"
-          >
-            <IconList size={18} />
-          </ActionIcon>
+            <ActionIcon
+              variant="filled"
+              color="green"
+              size="lg"
+              radius="md"
+            >
+              <IconLayoutGrid size={18} />
+            </ActionIcon>
+
+            <ActionIcon
+              variant="light"
+              color="gray"
+              size="lg"
+              radius="md"
+            >
+              <IconList size={18} />
+            </ActionIcon>
+
+          </Group>
 
         </Group>
 
-        {/* Right Side */}
+        {/* Right Section */}
         <Group>
 
-          <Text
-            size="sm"
-            c="dimmed"
-            fw={500}
-          >
-            Showing {totalProducts} Results
+          <Text fw={500}>
+            Showing {totalProducts} results
           </Text>
 
-          <Link
-            to="/add"
-            style={{ textDecoration: "none" }}
+          <Button
+            leftSection={<IconFileText size={18} />}
+            variant="light"
+            color="gray"
+            radius="md"
+            size='sm'
           >
-            <Button
-              color="green"
-              leftSection={<IconPlus size={18} />}
-            >
-              Add Product
-            </Button>
-          </Link>
+            Raise Bulk RFQ
+          </Button>
+
+          <Button
+            component={Link}
+            to="/add"
+            color="green"
+            radius="md"
+            size='sm'
+          >
+            Add Product
+          </Button>
 
         </Group>
 

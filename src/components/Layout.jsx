@@ -5,11 +5,8 @@ import Sidebar from "./Sidebar";
 export default function Layout({ children }) {
   return (
     <AppShell
-      header={{ height: 72 }}
-      navbar={{
-        width: 280,
-        breakpoint: "md",
-      }}
+      header={{ height: 80 }}
+      navbar={{ width: 260 }}
       padding="lg"
       styles={{
         main: {
@@ -22,8 +19,8 @@ export default function Layout({ children }) {
         },
 
         navbar: {
-          backgroundColor: "#ffffff",
-          borderRight: "1px solid #E9ECEF",
+          backgroundColor: "#F7F8FA",
+          borderRight: "none",
         },
       }}
     >
@@ -31,8 +28,8 @@ export default function Layout({ children }) {
         <Navbar />
       </AppShell.Header>
 
-      <AppShell.Navbar p="md">
-        <Sidebar />
+     <AppShell.Navbar p="md">
+      <Sidebar />
       </AppShell.Navbar>
 
       <AppShell.Main>{children}</AppShell.Main>

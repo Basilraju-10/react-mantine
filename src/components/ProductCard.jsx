@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import "./ProductCard.css";
 import {
   Card,
   Image,
@@ -6,87 +7,143 @@ import {
   Text,
   Title,
   Button,
-  Stack,
   Group,
+  Stack,
   Divider,
 } from "@mantine/core";
+import {
+  IconMapPin,
+  IconEye,
+} from "@tabler/icons-react";
 
 export default function ProductCard({ product }) {
   return (
     <Card
-  className="product-card"
-  shadow="xs"
-  radius="lg"
-  withBorder
-  p="lg"
->
-      {/* Stock Badge */}
-      <Group justify="space-between" mb="sm">
-        <Badge
-          color="green"
-          variant="light"
-          radius="sm"
-        >
-          In Stock
-        </Badge>
+      shadow="xs"
+      radius="lg"
+      withBorder
+      p="lg"
+      style={{
+        transition: "0.25s",
+        cursor: "pointer",
+        width: 280
+      }}
+      styles={{
+        root: {
+          height: "100%",
+        },
+      }}
+    >
+      <Stack justify="space-between" h="100%">
 
-        <Text size="xs" c="dimmed">
-          #{product.id}
-        </Text>
-      </Group>
+        {/* Top */}
+        <div>
 
-      {/* Product Image */}
-      <Card.Section p="md">
-        <Image
-          src={product.image}
-          alt={product.title}
-          h={220}
-          fit="contain"
-        />
-      </Card.Section>
+          <Group justify="space-between">
 
-      <Stack gap={8} mt="md">
+            <Badge
+              color="green"
+              variant="light"
+              radius="sm"
+            >
+              In Stock
+            </Badge>
 
-        <Text
-          size="xs"
-          c="dimmed"
-          tt="uppercase"
-        >
-          {product.category}
-        </Text>
+            <Badge
+              color="blue"
+              variant="outline"
+            >
+              AR
+            </Badge>
 
-        <Title
-          order={5}
-          lineClamp={2}
-        >
-          {product.title}
-        </Title>
+          </Group>
 
-        <Divider />
-
-        <Group justify="space-between">
+          <Image
+            src={product.image}
+            alt={product.title}
+            h={180}
+            fit="contain"
+            mt="md"
+            mb="md"
+          />
 
           <Text
-            size="xl"
-            fw={700}
-            c="green"
+            size="xs"
+            c="dimmed"
           >
-            ₹ {product.price}
+            PART #{product.id}
           </Text>
 
-          <Link
-            to={`/product/${product.id}`}
-            style={{ textDecoration: "none" }}
+          <Title
+            order={5}
+            mt={5}
+            lineClamp={2}
           >
+            {product.title}
+          </Title>
+
+          <Text
+            size="sm"
+            c="dimmed"
+            mt={6}
+          >
+            {product.category}
+          </Text>
+
+          <Group
+            gap={5}
+            mt="sm"
+          >
+            <IconMapPin size={15} />
+
+            <Text
+              size="sm"
+              c="dimmed"
+            >
+              USA
+            </Text>
+          </Group>
+
+        </div>
+
+        {/* Bottom */}
+        <div>
+
+          <Divider my="md" />
+
+          <Group justify="space-between">
+
+            <div>
+
+              <Text
+                size="xs"
+                c="dimmed"
+              >
+                Price
+              </Text>
+
+              <Title
+                order={3}
+                c="green"
+              >
+                ${product.price}
+              </Title>
+
+            </div>
+
             <Button
+              component={Link}
+              to={`/product/${product.id}`}
+              leftSection={<IconEye size={18} />}
               color="green"
               radius="md"
             >
               View
             </Button>
-          </Link>
 
-        </Group>
+          </Group>
+
+        </div>
 
       </Stack>
     </Card>
