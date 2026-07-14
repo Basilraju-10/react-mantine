@@ -37,7 +37,7 @@ export default function Navbar() {
           <Group gap={45}>
 
             <Image
-  src="/logo.png"
+ src="https://gfa.aero/theme_golden_aviation/static/src/image%203.0/logo.svg"
   w={110}
 />
 
@@ -71,13 +71,30 @@ export default function Navbar() {
 
               <Text fw={500}>Events</Text>
 
-              <Group gap={4}>
-                <IconPlus
+                 <Menu shadow="md">
+                <Menu.Target>
+
+                  <Group gap={4} style={{ cursor: "pointer" }}>
+                    <IconPlus
                   size={16}
                   color="#0b7d3b"
                 />
-                <Text fw={500}>More</Text>
-              </Group>
+                    <Text fw={500}>More</Text>
+                  </Group>
+
+                </Menu.Target>
+
+                <Menu.Dropdown>
+
+                  <Menu.Item>About</Menu.Item>
+
+                  <Menu.Item>Career</Menu.Item>
+
+                  <Menu.Item>Contact</Menu.Item>
+
+                </Menu.Dropdown>
+
+              </Menu>
 
             </Group>
 
