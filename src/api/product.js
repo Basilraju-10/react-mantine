@@ -8,7 +8,7 @@ export async function getProducts() {
     const response = await axios.get(BASE_URL);
     return response.data;
   } catch (error) {
-    console.log(error);
+    console.log("Error fetching products:", error);
     return [];
   }
 }
@@ -19,7 +19,7 @@ export async function getProduct(id) {
     const response = await axios.get(`${BASE_URL}/${id}`);
     return response.data;
   } catch (error) {
-    console.log(error);
+    console.log("Error fetching product:", error);
     return null;
   }
 }
@@ -30,7 +30,29 @@ export async function addProduct(product) {
     const response = await axios.post(BASE_URL, product);
     return response.data;
   } catch (error) {
-    console.log(error);
+    console.log("Error adding product:", error);
+    throw error;
+  }
+}
+
+// Update product
+export async function updateProduct(id, product) {
+  try {
+    const response = await axios.put(`${BASE_URL}/${id}`, product);
+    return response.data;
+  } catch (error) {
+    console.log("Error updating product:", error);
+    throw error;
+  }
+}
+
+// Delete product
+export async function deleteProduct(id) {
+  try {
+    const response = await axios.delete(`${BASE_URL}/${id}`);
+    return response.data;
+  } catch (error) {
+    console.log("Error deleting product:", error);
     throw error;
   }
 }

@@ -1,10 +1,17 @@
 import { useEffect, useState } from "react";
-import { Container, Grid, SimpleGrid } from "@mantine/core";
+import {
+  Container,
+  Title,
+  Text,
+  SimpleGrid,
+  Breadcrumbs,
+  Anchor,
+  Stack,
+} from "@mantine/core";
 
 import { getProducts } from "../api/product";
 
-import Navbar from "../components/Navbar";
-import Sidebar from "../components/Sidebar";
+import Layout from "../components/Layout";
 import SearchBar from "../components/SearchBar";
 import ProductCard from "../components/ProductCard";
 
@@ -24,44 +31,60 @@ export default function Display() {
     }
   }
 
+  const items = [
+    { title: "Home", href: "#" },
+    { title: "Products", href: "#" },
+  ].map((item, index) => (
+    <Anchor
+      href={item.href}
+      key={index}
+      c={index === 1 ? "green" : "dimmed"}
+      underline="never"
+    >
+      {item.title}
+    </Anchor>
+  ));
+
   return (
-    <>
-      <Navbar />
+    <Layout>
+      <Container fluid>
 
-      <Container fluid mt="md">
+        {/* Breadcrumb */}
+        <Breadcrumbs mb="md">
+          {items}
+        </Breadcrumbs>
 
-        <Grid>
+        {/* Heading */}
+        <Stack gap={4} mb="xl">
 
-          {/* Sidebar */}
-          <Grid.Col span={3}>
-            <Sidebar />
-          </Grid.Col>
+          <Title order={2}>
+            Fake Store Products
+          </Title>
 
-          {/* Right Content */}
-          <Grid.Col span={9}>
+          <Text c="dimmed">
+            Browse our collection of high-quality products.
+          </Text>
 
-            <SearchBar
-              totalProducts={products.length}
+        </Stack>
+
+        {/* Search */}
+        <SearchBar totalProducts={products.length} />
+
+        {/* Products */}
+        <SimpleGrid
+          cols={{ base: 1, sm: 2, lg: 3, xl: 4 }}
+          spacing="lg"
+          verticalSpacing="lg"
+        >
+          {products.map((product) => (
+            <ProductCard
+              key={product.id}
+              product={product}
             />
-
-            <SimpleGrid
-              cols={{ base: 1, sm: 2, lg: 3 }}
-              spacing="lg"
-              mt="lg"
-            >
-              {products.map((product) => (
-                <ProductCard
-                  key={product.id}
-                  product={product}
-                />
-              ))}
-            </SimpleGrid>
-
-          </Grid.Col>
-
-        </Grid>
+          ))}
+        </SimpleGrid>
 
       </Container>
-    </>
+    </Layout>
   );
 }

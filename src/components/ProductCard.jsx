@@ -2,21 +2,41 @@ import { Link } from "react-router-dom";
 import {
   Card,
   Image,
-  Text,
   Badge,
+  Text,
+  Title,
   Button,
   Stack,
+  Group,
+  Divider,
 } from "@mantine/core";
 
 export default function ProductCard({ product }) {
   return (
     <Card
-      shadow="sm"
-      padding="lg"
-      radius="md"
-      withBorder
-    >
-      <Card.Section>
+  className="product-card"
+  shadow="xs"
+  radius="lg"
+  withBorder
+  p="lg"
+>
+      {/* Stock Badge */}
+      <Group justify="space-between" mb="sm">
+        <Badge
+          color="green"
+          variant="light"
+          radius="sm"
+        >
+          In Stock
+        </Badge>
+
+        <Text size="xs" c="dimmed">
+          #{product.id}
+        </Text>
+      </Group>
+
+      {/* Product Image */}
+      <Card.Section p="md">
         <Image
           src={product.image}
           alt={product.title}
@@ -25,56 +45,48 @@ export default function ProductCard({ product }) {
         />
       </Card.Section>
 
-      <Stack mt="md" gap="xs">
-
-        <Badge
-          color="green"
-          variant="light"
-        >
-          In Stock
-        </Badge>
+      <Stack gap={8} mt="md">
 
         <Text
-          size="sm"
+          size="xs"
           c="dimmed"
-        >
-          Product #{product.id}
-        </Text>
-
-        <Text
-          fw={600}
-          lineClamp={2}
-        >
-          {product.title}
-        </Text>
-
-        <Text
-          size="sm"
-          c="dimmed"
+          tt="uppercase"
         >
           {product.category}
         </Text>
 
-        <Text
-          fw={700}
-          size="xl"
-          c="green"
+        <Title
+          order={5}
+          lineClamp={2}
         >
-          ₹ {product.price}
-        </Text>
+          {product.title}
+        </Title>
 
-        <Link
-          to={`/product/${product.id}`}
-          style={{ textDecoration: "none" }}
-        >
-          <Button
-            fullWidth
-            color="green"
-            mt="sm"
+        <Divider />
+
+        <Group justify="space-between">
+
+          <Text
+            size="xl"
+            fw={700}
+            c="green"
           >
-            View Product
-          </Button>
-        </Link>
+            ₹ {product.price}
+          </Text>
+
+          <Link
+            to={`/product/${product.id}`}
+            style={{ textDecoration: "none" }}
+          >
+            <Button
+              color="green"
+              radius="md"
+            >
+              View
+            </Button>
+          </Link>
+
+        </Group>
 
       </Stack>
     </Card>

@@ -9,9 +9,11 @@ import {
   Select,
   Button,
   Stack,
+  Breadcrumbs,
+  Anchor,
 } from "@mantine/core";
 
-import Navbar from "../components/Navbar";
+import Layout from "../components/Layout";
 import { addProduct } from "../api/product";
 
 export default function Add() {
@@ -39,13 +41,6 @@ export default function Add() {
 
       alert("Product Added Successfully");
 
-      setForm({
-        title: "",
-        price: 0,
-        category: "",
-        image: "",
-      });
-
       navigate("/");
     } catch (error) {
       console.log(error);
@@ -53,18 +48,35 @@ export default function Add() {
     }
   }
 
-  return (
-    <>
-      <Navbar />
+  const items = [
+    { title: "Home", href: "/" },
+    { title: "Add Product", href: "#" },
+  ].map((item, index) => (
+    <Anchor
+      key={index}
+      href={item.href}
+      underline="never"
+      c={index === 1 ? "green" : "dimmed"}
+    >
+      {item.title}
+    </Anchor>
+  ));
 
-      <Container size="sm" mt="xl">
+  return (
+    <Layout>
+      <Container size="sm">
+
+        <Breadcrumbs mb="md">
+          {items}
+        </Breadcrumbs>
+
         <Paper
-          shadow="md"
-          radius="md"
           p="xl"
+          radius="lg"
+          shadow="xs"
           withBorder
         >
-          <Title order={2} mb="lg">
+          <Title order={2} mb="xl">
             Add Product
           </Title>
 
@@ -82,7 +94,6 @@ export default function Add() {
 
               <NumberInput
                 label="Price"
-                placeholder="Enter price"
                 value={form.price}
                 onChange={(value) =>
                   setForm({
@@ -95,7 +106,7 @@ export default function Add() {
 
               <Select
                 label="Category"
-                placeholder="Select category"
+                placeholder="Choose category"
                 data={[
                   "Electronics",
                   "Jewelery",
@@ -109,12 +120,13 @@ export default function Add() {
                     category: value || "",
                   })
                 }
+                clearable
               />
 
               <TextInput
                 label="Image URL"
                 name="image"
-                placeholder="Enter image URL"
+                placeholder="https://example.com/image.jpg"
                 value={form.image}
                 onChange={handleChange}
               />
@@ -122,15 +134,18 @@ export default function Add() {
               <Button
                 type="submit"
                 color="green"
-                fullWidth
+                size="md"
+                mt="md"
               >
                 Add Product
               </Button>
 
             </Stack>
           </form>
+
         </Paper>
+
       </Container>
-    </>
+    </Layout>
   );
 }

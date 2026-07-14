@@ -1,38 +1,45 @@
 import {
   Paper,
   Stack,
-  Text,
+  Title,
+  Divider,
   TextInput,
   Select,
   RangeSlider,
+  Text,
   Button,
-  Divider,
+  Checkbox,
+  Group,
 } from "@mantine/core";
+import { IconSearch } from "@tabler/icons-react";
 
 export default function Sidebar() {
   return (
     <Paper
-      shadow="sm"
-      radius="md"
-      p="md"
+      p="lg"
+      radius="lg"
+      shadow="xs"
       withBorder
     >
-      <Stack>
+      <Stack gap="lg">
 
-        <Text fw={700} size="lg">
+        <Title order={4}>
           Filters
-        </Text>
+        </Title>
 
         <Divider />
 
+        {/* Product Search */}
         <TextInput
-          label="Product Name"
-          placeholder="Search..."
+          label="Search"
+          placeholder="Search products..."
+          leftSection={<IconSearch size={16} />}
         />
 
+        {/* Category */}
         <Select
           label="Category"
-          placeholder="Select Category"
+          placeholder="Select category"
           data={[
             "Electronics",
             "Jewelery",
@@ -42,23 +49,51 @@ export default function Sidebar() {
           clearable
         />
 
+        {/* Availability */}
         <div>
-          <Text mb="xs">
+          <Text fw={500} mb="xs">
+            Availability
+          </Text>
+
+          <Stack gap={6}>
+            <Checkbox
+              label="In Stock"
+              defaultChecked
+            />
+
+            <Checkbox
+              label="Out of Stock"
+            />
+          </Stack>
+        </div>
+
+        {/* Price */}
+        <div>
+          <Text fw={500} mb="xs">
             Price Range
           </Text>
 
           <RangeSlider
+            color="green"
             min={0}
             max={1000}
             defaultValue={[100, 800]}
           />
+
+          <Group justify="space-between" mt="xs">
+            <Text size="sm">$100</Text>
+            <Text size="sm">$800</Text>
+          </Group>
         </div>
 
+        <Divider />
+
         <Button
-          color="red"
-          variant="light"
+          variant="outline"
+          color="gray"
+          fullWidth
         >
-          Clear Filters
+          Reset Filters
         </Button>
 
       </Stack>

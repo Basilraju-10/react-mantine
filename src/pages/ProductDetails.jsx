@@ -1,20 +1,23 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import {
   Container,
   Grid,
   Image,
   Paper,
+  Badge,
   Title,
   Text,
-  Badge,
   Button,
   Stack,
-  Center,
+  Group,
   Loader,
+  Center,
+  Breadcrumbs,
+  Anchor,
 } from "@mantine/core";
 
-import Navbar from "../components/Navbar";
+import Layout from "../components/Layout";
 import { getProduct } from "../api/product";
 
 export default function ProductDetails() {
@@ -37,25 +40,42 @@ export default function ProductDetails() {
 
   if (!product) {
     return (
-      <>
-        <Navbar />
-
-        <Center mt="xl">
-          <Loader size="lg" />
+      <Layout>
+        <Center h="70vh">
+          <Loader color="green" size="lg" />
         </Center>
-      </>
+      </Layout>
     );
   }
 
-  return (
-    <>
-      <Navbar />
+  const items = [
+    { title: "Home", href: "/" },
+    { title: "Products", href: "/" },
+    { title: product.title, href: "#" },
+  ].map((item, index) => (
+    <Anchor
+      key={index}
+      component={Link}
+      to={item.href}
+      underline="never"
+      c={index === 2 ? "green" : "dimmed"}
+    >
+      {item.title}
+    </Anchor>
+  ));
 
-      <Container size="lg" mt="xl">
+  return (
+    <Layout>
+      <Container size="lg">
+
+        <Breadcrumbs mb="lg">
+          {items}
+        </Breadcrumbs>
+
         <Paper
-          shadow="md"
-          radius="md"
           p="xl"
+          radius="lg"
+          shadow="xs"
           withBorder
         >
           <Grid>
@@ -70,51 +90,64 @@ export default function ProductDetails() {
             </Grid.Col>
 
             <Grid.Col span={{ base: 12, md: 7 }}>
+
               <Stack>
 
                 <Badge
                   color="green"
                   variant="light"
+                  w="fit-content"
                 >
                   In Stock
                 </Badge>
-
-                <Text c="dimmed">
-                  Product #{product.id}
-                </Text>
 
                 <Title order={2}>
                   {product.title}
                 </Title>
 
-                <Text fw={500}>
-                  {product.category}
+                <Text c="dimmed">
+                  Category: {product.category}
                 </Text>
 
-                <Title
-                  order={3}
-                  c="green"
-                >
-                  ₹ {product.price}
-                </Title>
+                <Group>
+                  <Text
+                    size="xl"
+                    fw={700}
+                    c="green"
+                  >
+                    ₹ {product.price}
+                  </Text>
+                </Group>
 
                 <Text>
                   {product.description}
                 </Text>
 
-                <Button
-                  color="green"
-                  w={200}
-                >
-                  Add To Cart
-                </Button>
+                <Group mt="md">
+
+                  <Button color="green">
+                    Add to Cart
+                  </Button>
+
+                  <Button
+                    variant="outline"
+                    color="green"
+                    component={Link}
+                    to="/"
+                  >
+                    Back to Products
+                  </Button>
+
+                </Group>
 
               </Stack>
+
             </Grid.Col>
 
           </Grid>
         </Paper>
+
       </Container>
-    </>
+    </Layout>
   );
 }

@@ -4,35 +4,82 @@ import {
   TextInput,
   Button,
   Text,
+  ActionIcon,
+  Paper,
 } from "@mantine/core";
+import {
+  IconSearch,
+  IconLayoutGrid,
+  IconList,
+  IconPlus,
+} from "@tabler/icons-react";
 
 export default function SearchBar({ totalProducts }) {
   return (
-    <Group
-      justify="space-between"
-      align="center"
+    <Paper
+      p="md"
+      radius="lg"
+      shadow="xs"
+      withBorder
       mb="lg"
     >
-      {/* Search Input */}
-      <TextInput
-        placeholder="Search products..."
-        w={350}
-      />
+      <Group justify="space-between" align="center">
 
-      {/* Total Products */}
-      <Text fw={500}>
-        Showing {totalProducts} Products
-      </Text>
+        {/* Left Side */}
+        <Group>
 
-      {/* Add Product Button */}
-      <Link
-        to="/add"
-        style={{ textDecoration: "none" }}
-      >
-        <Button color="green">
-          Add Product
-        </Button>
-      </Link>
-    </Group>
+          <TextInput
+            placeholder="Search catalog..."
+            leftSection={<IconSearch size={18} />}
+            w={350}
+          />
+
+          <ActionIcon
+            variant="light"
+            color="green"
+            size="lg"
+            radius="md"
+          >
+            <IconLayoutGrid size={18} />
+          </ActionIcon>
+
+          <ActionIcon
+            variant="light"
+            color="gray"
+            size="lg"
+            radius="md"
+          >
+            <IconList size={18} />
+          </ActionIcon>
+
+        </Group>
+
+        {/* Right Side */}
+        <Group>
+
+          <Text
+            size="sm"
+            c="dimmed"
+            fw={500}
+          >
+            Showing {totalProducts} Results
+          </Text>
+
+          <Link
+            to="/add"
+            style={{ textDecoration: "none" }}
+          >
+            <Button
+              color="green"
+              leftSection={<IconPlus size={18} />}
+            >
+              Add Product
+            </Button>
+          </Link>
+
+        </Group>
+
+      </Group>
+    </Paper>
   );
 }
