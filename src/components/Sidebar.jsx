@@ -15,7 +15,7 @@ export default function Sidebar() {
   return (
     <Paper
       shadow="xs"
-      radius="lg"
+      radius="md"
       withBorder
       p="lg"
       style={{

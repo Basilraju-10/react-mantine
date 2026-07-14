@@ -1,65 +1,199 @@
-/* Import Inter Font (optional if added in index.html) */
+/* ==========================================
+   Google Font
+========================================== */
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
 
-/* Reset */
-* {
+/* ==========================================
+   Reset
+========================================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 
-/* Full height */
-html,
-body,
-#root {
-  height: 100%;
-}
-
-/* Body */
-body {
-  font-family: "Inter", sans-serif;
-  background-color: #f7f8fa;
-  color: #232b38;
-  line-height: 1.5;
-}
-
-/* Links */
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
-/* Images */
-img {
-  max-width: 100%;
-  display: block;
-}
-
-/* Smooth scrolling */
+/* ==========================================
+   Root
+========================================== */
 html {
   scroll-behavior: smooth;
 }
 
-/* Scrollbar */
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  background: #f6f8fa;
+  color: #1f2937;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ==========================================
+   Typography
+========================================== */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #111827;
+  font-weight: 600;
+}
+
+p {
+  color: #6b7280;
+}
+
+/* ==========================================
+   Links
+========================================== */
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ==========================================
+   Images
+========================================== */
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/* ==========================================
+   Form Elements
+========================================== */
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+/* ==========================================
+   Layout Helpers
+========================================== */
+
+.page-container {
+  max-width: 1440px;
+  margin: auto;
+  padding: 24px;
+}
+
+.page-title {
+  margin-bottom: 4px;
+}
+
+.page-subtitle {
+  margin-bottom: 28px;
+}
+
+.display-layout {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.sidebar {
+  width: 280px;
+  position: sticky;
+  top: 90px;
+  flex-shrink: 0;
+}
+
+.content {
+  flex: 1;
+  min-width: 0;
+}
+
+.search-toolbar {
+  margin-bottom: 20px;
+}
+
+.products-grid {
+  margin-top: 8px;
+}
+
+/* ==========================================
+   Hover Animations
+========================================== */
+
+.product-card {
+  transition: transform 0.2s ease,
+              box-shadow 0.2s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+}
+
+/* ==========================================
+   Scrollbar
+========================================== */
+
 ::-webkit-scrollbar {
   width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f3f5;
+  background: #eef1f4;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #c1c7d0;
-  border-radius: 10px;
+  background: #c5ccd5;
+  border-radius: 999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #adb5bd;
+  background: #9ca3af;
 }
 
-/* Selection */
+/* Firefox */
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #c5ccd5 #eef1f4;
+}
+
+/* ==========================================
+   Text Selection
+========================================== */
+
 ::selection {
   background: #0b7a3e;
   color: white;
+}
+
+/* ==========================================
+   Responsive
+========================================== */
+
+@media (max-width: 992px) {
+
+  .display-layout {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    position: static;
+    width: 100%;
+  }
+
+  .page-container {
+    padding: 16px;
+  }
 }

@@ -20,7 +20,7 @@ export default function ProductCard({ product }) {
   return (
     <Card
       shadow="xs"
-      radius="lg"
+      radius="md"
       withBorder
       p="lg"
       style={{

@@ -18,7 +18,7 @@ export default function SearchBar({ totalProducts }) {
   return (
     <Paper
       shadow="xs"
-      radius="lg"
+      radius="md"
       withBorder
       p="md"
       mb="lg"

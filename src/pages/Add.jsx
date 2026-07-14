@@ -72,7 +72,7 @@ export default function Add() {
 
         <Paper
           p="xl"
-          radius="lg"
+          radius="md"
           shadow="xs"
           withBorder
         >
