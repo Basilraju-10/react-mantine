@@ -15,7 +15,11 @@ import {
   IconFileText,
 } from "@tabler/icons-react";
 
-export default function SearchBar({ totalProducts }) {
+export default function SearchBar({
+  totalProducts,
+  view,
+  setView,
+}) {
   return (
     <Paper
       shadow="xs"
@@ -40,20 +44,24 @@ export default function SearchBar({ totalProducts }) {
           />
 
           <Group gap={6}>
+            {/* Grid View */}
             <ActionIcon
-              variant="filled"
+              variant={view === "grid" ? "filled" : "light"}
               color="green"
               size="lg"
               radius="md"
+              onClick={() => setView("grid")}
             >
               <IconLayoutGrid size={18} />
             </ActionIcon>
 
+            {/* List View */}
             <ActionIcon
-              variant="light"
-              color="gray"
+              variant={view === "list" ? "filled" : "light"}
+              color={view === "list" ? "green" : "gray"}
               size="lg"
               radius="md"
+              onClick={() => setView("list")}
             >
               <IconList size={18} />
             </ActionIcon>

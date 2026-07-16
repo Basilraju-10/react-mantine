@@ -14,10 +14,12 @@ import Layout from "../components/Layout";
 import Sidebar from "../components/Sidebar";
 import SearchBar from "../components/SearchBar";
 import ProductCard from "../components/ProductCard";
+import ProductListCard from "../components/ProductListCard";
 import { getProducts } from "../api/product";
 
 export default function Display() {
   const [products, setProducts] = useState([]);
+  const [view, setView] = useState("grid");
 
   useEffect(() => {
     loadProducts();
@@ -68,9 +70,7 @@ export default function Display() {
         <Grid gutter="xl">
 
           {/* Sidebar */}
-          <Grid.Col
-            span={{ base: 12, md: 3 }}
-          >
+          <Grid.Col span={{ base: 12, md: 3 }}>
             <Box
               pos="sticky"
               top={90}
@@ -80,27 +80,44 @@ export default function Display() {
           </Grid.Col>
 
           {/* Content */}
-          <Grid.Col
-            span={{ base: 12, md: 9 }}
-          >
-            <SearchBar totalProducts={products.length} />
+          <Grid.Col span={{ base: 12, md: 9 }}>
 
-            <Grid mt="xl">
+            <SearchBar
+              totalProducts={products.length}
+              view={view}
+              setView={setView}
+            />
 
-              {products.map((product) => (
-                <Grid.Col
-                  key={product.id}
-                  span={{
-                    base: 12,
-                    sm: 4,
-                    xl: 4,
-                  }}
-                >
-                  <ProductCard product={product} />
-                </Grid.Col>
-              ))}
+            {view === "grid" ? (
 
-            </Grid>
+              <Grid mt="xl">
+                {products.map((product) => (
+                  <Grid.Col
+                    key={product.id}
+                    span={{
+                      base: 12,
+                      sm: 4,
+                      xl: 4,
+                    }}
+                  >
+                    <ProductCard product={product} />
+                  </Grid.Col>
+                ))}
+              </Grid>
+
+            ) : (
+
+              <Stack mt="xl" gap="md">
+                {products.map((product) => (
+                  <ProductListCard
+                    key={product.id}
+                    product={product}
+                  />
+                ))}
+              </Stack>
+
+            )}
+
           </Grid.Col>
 
         </Grid>
