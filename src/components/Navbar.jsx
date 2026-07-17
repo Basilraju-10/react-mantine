@@ -31,7 +31,7 @@ export default function Navbar() {
         h={80}
         style={{
           background: "#ffffff",
-          borderBottom: "1px solid #e9ecef",
+          borderBottom: "3px solid #e9ecef",
         }}
       >
         <Container size="xl" h="100%">
@@ -47,7 +47,11 @@ export default function Navbar() {
               <Group gap={35} visibleFrom="md">
                 <Text fw={500}>Who We Are</Text>
 
-                <Menu shadow="md">
+                <Menu shadow="md"
+                 shadow="md"
+                  trigger="hover"
+                  openDelay={100}
+                  closeDelay={150}>
                   <Menu.Target>
                     <Group gap={4} style={{ cursor: "pointer" }}>
                       <Text fw={500}>Services</Text>
@@ -66,7 +70,11 @@ export default function Navbar() {
 
                 <Text fw={500}>Events</Text>
 
-                <Menu shadow="md">
+                 <Menu shadow="md"
+                 shadow="md"
+                  trigger="hover"
+                  openDelay={100}
+                  closeDelay={150}>
                   <Menu.Target>
                     <Group gap={4} style={{ cursor: "pointer" }}>
                       <IconPlus size={16} color="#0b7d3b" />

@@ -58,7 +58,6 @@ export default function SearchBar({
             {/* List View */}
             <ActionIcon
               variant={view === "list" ? "filled" : "light"}
-              color={view === "list" ? "green" : "gray"}
               size="lg"
               radius="md"
               onClick={() => setView("list")}
