@@ -27,7 +27,7 @@ export default function ProductDetails() {
   const [product, setProduct] = useState(null);
 
   useEffect(() => {
-    loadProduct();
+    loadProduct();1
   }, []);
 
   async function loadProduct() {
